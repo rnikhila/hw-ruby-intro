@@ -1,5 +1,5 @@
 # When done, submit this entire file to the autograder.
-
+# Name: Nikhila R
 # Part 1
 
 def sum arr
