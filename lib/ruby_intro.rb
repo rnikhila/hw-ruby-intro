@@ -13,14 +13,7 @@ end
 
 def max_2_sum arr
   # YOUR CODE HERE
-  arr.sort
-  if arr.size >= 2
-    return arr[-2]+arr[-1]
-  elsif arr.size = 0
-    return 0
-  else
-    return arr[-1]
-  end
+sum(arr.sort.last(2))
 end
 
 def sum_to_n? arr, n
@@ -30,7 +23,7 @@ def sum_to_n? arr, n
       map.push(n-i)
   end
   result = map & arr 
-  if result.size == 0
+  if result.size <= 1
     return false
   else
     return true
@@ -47,23 +40,21 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
-  if s[0] == "a" || s[0] == "e" ||s[0] == "i" ||s[0] == "o" || s[0] == "u"
-    return false
-  else
-    return true
-  end
+s =~ /^[^aeiou\W]/i
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
-  if s.length <2
+  if s.length == 1 && s[0] == '0'
+    return true
+  elsif s.length < 2
     return false
   end
   s.split("").each do |i|
-    if i != "1" || i != "0" 
+    if i != "1" && i != "0" 
       return false
     end
-    if s[-1] == 1 && s[-2] == 1
+    if s[-1] == '0' && s[-2] == '0'
       return true
     else 
       return false
@@ -74,6 +65,18 @@ end
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
-
+  attr_accessor:isbn
+  attr_accessor:price
+  def initialize(isbn,price)
+    raise ArgumentError.new("price must be greater than zero") unless price > 0
+    raise ArgumentError.new "isbn must be string" unless isbn.is_a?(String)
+    raise ArgumentError.new "illegal argument" if isbn.empty?
+    @isbn = isbn
+    @price = price
+  end
+  
+  def price_as_string
+    sprintf("$%2.2f",@price)
+  end
+  
 end
